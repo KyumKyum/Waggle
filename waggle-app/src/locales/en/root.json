@@ -1,0 +1,9 @@
+{
+	"header": {
+		"description": "Gather Study, Have Fun!"
+	},
+	"button": {
+		"signIn": "Sign In",
+		"signUp": "Sign Up"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"header": {
+		"description": "스터디를 만들고, 즐겁게 진행하세요!"
+	},
+	"button": {
+		"signIn": "로그인",
+		"signUp": "회원가입"
+	}
+}
