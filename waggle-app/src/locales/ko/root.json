@@ -1,9 +1,14 @@
 {
 	"header": {
+		"signUp": "환영합니다 :)",
+		"signIn": "반가워요!",
 		"description": "스터디를 만들고, 즐겁게 진행하세요!"
 	},
 	"button": {
 		"signIn": "로그인",
-		"signUp": "회원가입"
+		"signUp": "회원가입",
+		"back": "뒤로가기",
+		"next": "다음",
+		"login": "로그인"
 	}
 }

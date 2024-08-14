@@ -1,9 +1,14 @@
 {
 	"header": {
+		"signUp": "Welcome :)",
+		"signIn": "Good to see you!",
 		"description": "Gather Study, Have Fun!"
 	},
 	"button": {
 		"signIn": "Sign In",
-		"signUp": "Sign Up"
+		"signUp": "Sign Up",
+		"back": "Go Back",
+		"next": "Next",
+		"login": "Login"
 	}
 }

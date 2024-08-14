@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import loadTranslator from "./locales";
+import RootRouter from "./router/RootRouter";
 
 loadTranslator();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<App />
+		<RootRouter />
 	</React.StrictMode>,
 );

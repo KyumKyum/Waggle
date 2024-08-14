@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import JitterText from "../components/common/JitterText";
 
-function SignUpPage() {
+function SignInPage() {
 	const { t } = useTranslation("Root");
 	const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ function SignUpPage() {
 			<div className="h-5/6 flex flex-col">
 				<JitterText
 					className="text-[#fff314] font-DGM text-6xl"
-					text={t("header.signUp")}
+					text={t("header.signIn")}
 					duration={0.6}
 				/>
 			</div>
@@ -33,7 +33,7 @@ function SignUpPage() {
 					// }}
 				>
 					<h6 className="text-[#fff314] font-DGM text-2xl">
-						{t("button.next")}
+						{t("button.login")}
 					</h6>
 				</button>
 			</div>
@@ -41,4 +41,4 @@ function SignUpPage() {
 	);
 }
 
-export default SignUpPage;
+export default SignInPage;

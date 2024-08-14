@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
-import "./App.css";
-import JitterText from "./components/common/JitterText";
-import HoverButton from "./components/common/HoverButton";
-import LanguageButton from "./components/common/LanguageButton";
+import "../App.css";
+import JitterText from "../components/common/JitterText";
+import HoverButton from "../components/common/HoverButton";
+import LanguageButton from "../components/common/LanguageButton";
+import { useNavigate } from "react-router-dom";
 
 function App() {
 	// async function greet() {
@@ -11,6 +12,7 @@ function App() {
 	// }
 
 	const { t } = useTranslation("Root");
+	const navigate = useNavigate();
 
 	return (
 		<div className="h-svh flex flex-col bg-[#04142e] p-10 items-center">
@@ -29,12 +31,16 @@ function App() {
 					<HoverButton
 						text={t("button.signIn")}
 						className="text-2xl font-DGM"
-						cb={() => {}}
+						cb={() => {
+							navigate("/signIn");
+						}}
 					/>
 					<HoverButton
 						text={t("button.signUp")}
 						className="text-2xl font-DGM"
-						cb={() => {}}
+						cb={() => {
+							navigate("/signUp");
+						}}
 					/>
 				</div>
 			</div>
