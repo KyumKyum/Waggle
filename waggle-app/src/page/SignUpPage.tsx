@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import JitterText from "../components/common/JitterText";
+import HoverButton from "../components/common/HoverButton";
 
 function SignUpPage() {
 	const { t } = useTranslation("Root");
@@ -16,26 +17,18 @@ function SignUpPage() {
 				/>
 			</div>
 			<div className="h-1/6 w-full flex flex-row items-end justify-between">
-				<button
-					type="button"
-					onClick={() => {
+				<HoverButton
+					text={t("button.back")}
+					className="text-[#fff314] font-DGM text-2xl"
+					cb={() => {
 						navigate(-1);
 					}}
-				>
-					<h6 className="text-[#fff314] font-DGM text-2xl">
-						{t("button.back")}
-					</h6>
-				</button>
-				<button
-					type="button"
-					// onClick={() => {
-					// 	navigate("/");
-					// }}
-				>
-					<h6 className="text-[#fff314] font-DGM text-2xl">
-						{t("button.next")}
-					</h6>
-				</button>
+				/>
+				<HoverButton
+					text={t("button.next")}
+					className="text-[#fff314] font-DGM text-2xl"
+					cb={() => {}}
+				/>
 			</div>
 		</div>
 	);

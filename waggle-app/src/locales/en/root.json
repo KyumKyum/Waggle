@@ -10,5 +10,9 @@
 		"back": "Go Back",
 		"next": "Next",
 		"login": "Login"
+	},
+	"placeholder": {
+		"signInId": "Username",
+		"signInPassphrase": "Passphrase"
 	}
 }
