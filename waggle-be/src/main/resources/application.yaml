@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: waggle-be
+  profiles:
+    group:
+      dev: dev
+      prod: prod
+---
