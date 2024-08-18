@@ -1,7 +1,7 @@
 {
 	"header": {
-		"signUp": "Welcome :)",
-		"signIn": "Good to see you!",
+		"signUp": "Welcome, new waggler! :)",
+		"signIn": "Good to see you, waggler!",
 		"description": "Gather Study, Have Fun!"
 	},
 	"button": {

@@ -11,7 +11,7 @@ function SignInPage() {
 		<div className="h-svh flex flex-col bg-[#04142e] p-10">
 			<div className="h-5/6 flex flex-col">
 				<JitterText
-					className="text-[#fff314] font-DGM text-6xl mb-20"
+					className="text-[#fff314] font-DGM text-5xl mb-20"
 					text={t("header.signIn")}
 					duration={0.6}
 				/>
