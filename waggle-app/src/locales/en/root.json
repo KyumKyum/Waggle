@@ -12,7 +12,12 @@
 		"login": "Login"
 	},
 	"placeholder": {
-		"signInId": "Username",
+		"email": "Email",
+		"passphrase": "Passphrase",
+		"passphraseCheck": "Passphrase Check"
+	},
+	"label": {
+		"signInEmail": "Email",
 		"signInPassphrase": "Passphrase"
 	}
 }

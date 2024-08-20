@@ -22,3 +22,6 @@ spring:
     hidden-method:
       filter:
         enabled: true
+    redis:
+      host: localhost
+      port: 16379

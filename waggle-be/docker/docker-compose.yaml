@@ -1,5 +1,5 @@
 services:
-  postgres:
+  db:
     image: postgres:latest
     restart: always
     container_name: postgres
@@ -18,5 +18,21 @@ services:
       retries: 10
       start_period: 10s
 
+  authCodeStorage:
+    image: redis:latest
+    restart: always
+    container_name: redis
+    volumes:
+      - redis_volume:/data
+    ports:
+      - ${REDIS_PORT}:6379
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+
 volumes:
   pg_volume:
+  redis_volume:

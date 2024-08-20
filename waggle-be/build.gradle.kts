@@ -26,6 +26,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.kafka:spring-kafka")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis") 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     //runtimeOnly("io.micrometer:micrometer-registry-influx")
     runtimeOnly("org.postgresql:postgresql")

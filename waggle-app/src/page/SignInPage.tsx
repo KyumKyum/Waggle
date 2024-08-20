@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import JitterText from "../components/common/JitterText";
 import HoverButton from "../components/common/HoverButton";
+import LabelInput from "../components/common/LabelInput";
 
 function SignInPage() {
 	const { t } = useTranslation("Root");
@@ -18,9 +19,8 @@ function SignInPage() {
 				<form className="flex flex-col h-full w-full justify-around items-center">
 					<input
 						className="w-1/2 h-12 bg-transparent font-DGM text-center text-[#fff314] border-b-2 border-b-[#fff314] placeholder:text-[#fff314] text-2xl focus:outline-none"
-						placeholder={t("placeholder.signInId")}
+						placeholder={t("placeholder.signInEmail")}
 					/>
-
 					<input
 						className="w-1/2 h-12 bg-transparent font-DGM text-center text-[#fff314] border-b-2 border-b-[#fff314] placeholder:text-[#fff314] text-2xl focus:outline-none"
 						placeholder={t("placeholder.signInPassphrase")}
