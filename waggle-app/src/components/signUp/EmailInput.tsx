@@ -11,6 +11,8 @@ import { cls } from "../../utils/cls";
 import { validateEmail } from "../../utils/regex";
 import { useTranslation } from "react-i18next";
 
+import { invoke } from "@tauri-apps/api/core";
+
 const EmailInput = ({
 	setEmail,
 }: { setEmail: Dispatch<SetStateAction<string>> }) => {
@@ -30,11 +32,11 @@ const EmailInput = ({
 				clearTimeout(timeoutRef.current);
 			}
 
-			timeoutRef.current = setTimeout(() => {
+			timeoutRef.current = setTimeout(async () => {
 				if (inputValue.length <= 0) {
 					setError(false);
 					setMessage("");
-				} else if (!handleEmail(inputValue)) {
+				} else if (!(await handleEmail(inputValue))) {
 					setError(true);
 				} else {
 					setError(false);
@@ -46,9 +48,13 @@ const EmailInput = ({
 		[setEmail],
 	);
 
-	const handleEmail = (email: string): boolean => {
+	const handleEmail = async (email: string): Promise<boolean> => {
 		if (!validateEmail(email)) {
 			setMessage(t("message.error.invalidatedEmail"));
+			return false;
+		}
+		if (!(await invoke("check_email_dup", { email }))) {
+			setMessage(t("message.error.duplicatedEmail"));
 			return false;
 		}
 		setMessage(t("message.normal.approved"));
