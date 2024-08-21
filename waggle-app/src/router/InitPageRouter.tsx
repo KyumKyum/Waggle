@@ -1,13 +1,8 @@
-import {
-	Routes,
-	Route,
-	useLocation,
-	useNavigationType,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import RootPage from "../page/RootPage";
 import SignUpPage from "../page/SignUpPage";
-import "../animation/PageTransition.css";
+import "../animations/PageTransition.css";
 import SignInPage from "../page/SignInPage";
 
 function InitPageRouter() {

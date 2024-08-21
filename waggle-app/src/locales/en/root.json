@@ -19,5 +19,13 @@
 	"label": {
 		"signInEmail": "Email",
 		"signInPassphrase": "Passphrase"
+	},
+	"message": {
+		"error": {
+			"invalidatedEmail": "This is not an email!"
+		},
+		"normal": {
+			"approved": "Good! :)"
+		}
 	}
 }

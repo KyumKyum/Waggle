@@ -18,9 +18,10 @@ export default {
 					neutral: "#04142e",
 					"base-100": "#04142e",
 					info: "#3ABFF8",
-				}
+					error: "#ff4848",
+				},
 			},
-		]
+		],
 	},
-	plugins: [require("tailwindcss-animate"), require('daisyui')],
+	plugins: [require("tailwindcss-animate"), require("daisyui")],
 };
