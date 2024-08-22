@@ -18,10 +18,10 @@ services:
       retries: 10
       start_period: 10s
 
-  authCodeStorage:
+  dup_storage:
     image: redis:latest
     restart: always
-    container_name: redis
+    container_name: dup_storage
     volumes:
       - redis_volume:/data
     ports:
