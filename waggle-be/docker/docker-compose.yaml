@@ -36,3 +36,6 @@ services:
 volumes:
   pg_volume:
   redis_volume:
+
+networks:
+  default:
