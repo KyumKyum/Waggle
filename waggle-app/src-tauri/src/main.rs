@@ -4,7 +4,7 @@ use dotenv::from_filename;
 use std::env;
 
 fn main() {
-    let environment = env::var("MODE").unwrap_or_else(|_| "development".into());
+    let environment = env::var("MODE").unwrap_or("development".to_string());
 
     let env_file = match environment.as_str() {
         "production" => ".env.production",

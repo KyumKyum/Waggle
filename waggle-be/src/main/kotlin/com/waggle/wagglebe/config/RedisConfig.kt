@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer
 
 @Configuration
 class RedisConfig (
-    @Value("\${spring.duplicationStorage,host}")
+    @Value("\${spring.duplicationStorage.host}")
     val host: String,
     
     @Value("\${spring.duplicationStorage.port}")

@@ -10,8 +10,7 @@ import {
 import { cls } from "../../utils/cls";
 import { validateEmail } from "../../utils/regex";
 import { useTranslation } from "react-i18next";
-
-import { invoke } from "@tauri-apps/api/core";
+import { checkEmailExistence } from "../../server/invokeEmail";
 
 const EmailInput = ({
 	setEmail,
@@ -53,7 +52,7 @@ const EmailInput = ({
 			setMessage(t("message.error.invalidatedEmail"));
 			return false;
 		}
-		if (!(await invoke("check_email_dup", { email }))) {
+		if (!(await checkEmailExistence(email))) {
 			setMessage(t("message.error.duplicatedEmail"));
 			return false;
 		}

@@ -4223,6 +4223,7 @@ dependencies = [
  "env_logger",
  "h2 0.2.7",
  "log",
+ "once_cell",
  "reqwest",
  "serde",
  "serde_json",
