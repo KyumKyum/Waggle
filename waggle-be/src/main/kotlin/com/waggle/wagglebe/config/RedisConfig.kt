@@ -16,14 +16,14 @@ class RedisConfig (
 ){
 
     @Bean
-    fun dupStorageConnectionFactory(): RedisConnectionFactory {
+    fun verificationStoreConnectionFactory(): RedisConnectionFactory {
         return LettuceConnectionFactory(host, port)
     }
 
     @Bean
-    fun dupStorageTemplate(): RedisTemplate<*, *> {
+    fun verificationStoreTemplate(): RedisTemplate<*, *> {
         return RedisTemplate<Any, Any>().apply {
-            connectionFactory = dupStorageConnectionFactory()
+            connectionFactory = verificationStoreConnectionFactory()
 
             this.keySerializer = StringRedisSerializer()
             this.hashKeySerializer = StringRedisSerializer()

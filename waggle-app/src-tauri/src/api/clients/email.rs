@@ -19,6 +19,7 @@ impl EmailApiClient {
         match resp {
             Ok(response) => {
                 println!("Response status: {}", response.status());
+                // println!("Body: {}", resp)
             },  // Directly pass through the successful response
             Err(e) => {
                 return Err(e.to_string());
