@@ -15,8 +15,7 @@ class EmailController(
 ) {
     @GetMapping("existence")
     fun checkEmailExistence(@RequestParam email: String): CommonResponse<UInt> {
-
-        val existence = this.emailService.checkEmailCrednetialConfliction(email)
+        val existence = this.emailService.checkEmailCrednetialConfliction(email);
         return CommonResponse(ok = !existence, message = null, data = null);
     }
 }

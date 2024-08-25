@@ -1,3 +1,6 @@
+use reqwest::Error;
+
+use crate::dto::common_response::CommonResponseDto;
 pub struct EmailApiClient {
     api_url: String
 }
@@ -7,28 +10,20 @@ impl EmailApiClient {
         EmailApiClient { api_url }
     }
 
-    pub async fn check_email_existence(&self, email: &str) -> Result<bool, String> {
+    pub async fn check_email_existence(&self, email: &str) -> Result<bool, Error> {
         let mut api = self.api_url.clone();
         let endpoint = format!("/emails/existence?email={}", email);
         api.push_str(&endpoint);
 
         println!("{}",api);
 
-        let resp = reqwest::get(&api).await;
+        let resp = reqwest::get(&api).await?;
 
-        match resp {
-            Ok(response) => {
-                println!("Response status: {}", response.status());
-                // println!("Body: {}", resp)
-            },  // Directly pass through the successful response
-            Err(e) => {
-                return Err(e.to_string());
-            }
-        };
+        if resp.status().is_success() {
+            let body: CommonResponseDto<()> = resp.json().await?;
+            return Ok(body.ok);
+        }
 
-        // TODO: Implement the actual logic to determine email existence
-        
-
-        Ok(true) // Placeholder return value
+        Ok(false) // Placeholder return value, this is failure
     }
 }

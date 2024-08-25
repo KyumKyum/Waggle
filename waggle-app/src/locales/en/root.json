@@ -23,7 +23,9 @@
 	"message": {
 		"error": {
 			"invalidatedEmail": "This is not an email!",
-			"duplicatedEmail": "Another waggler took this email!"
+			"duplicatedEmail": "This email is owned already!",
+			"shortPassword": "Password should be longer than 8 characters!",
+			"differentPassword": "Password is different!"
 		},
 		"normal": {
 			"approved": "Good! :)"

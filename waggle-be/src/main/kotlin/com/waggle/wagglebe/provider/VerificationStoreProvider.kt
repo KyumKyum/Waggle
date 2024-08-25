@@ -18,6 +18,6 @@ class VerificationStoreProvider(
     }
 
     fun checkIfVerificationExists(key: String, value: String): Boolean? {
-        return this.verificationStoreTemplate.opsForSet().isMember(key, value);
+        return this.verificationStoreTemplate.opsForSet().isMember(key, value)
     }
 }
