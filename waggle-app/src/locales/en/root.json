@@ -24,7 +24,7 @@
 		"error": {
 			"invalidatedEmail": "This is not an email!",
 			"duplicatedEmail": "This email is owned already!",
-			"shortPassword": "Password should be longer than 8 characters!",
+			"shortPassword": "Password should be longer than 6 characters!",
 			"differentPassword": "Password is different!"
 		},
 		"normal": {

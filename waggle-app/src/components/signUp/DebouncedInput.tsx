@@ -1,6 +1,7 @@
 import {
 	type ChangeEvent,
 	type Dispatch,
+	type HTMLInputTypeAttribute,
 	type SetStateAction,
 	useCallback,
 	useRef,
@@ -10,20 +11,25 @@ import {
 import { cls } from "../../utils/cls";
 import { useTranslation } from "react-i18next";
 
-const PasswordInput = ({
-	setPassword,
-	placeholder,
-	differentPassword,
-	differentPasswordErrorMessage,
-}: {
-	setPassword: Dispatch<SetStateAction<string>>;
+interface DebouncedInputProps {
+	type: HTMLInputTypeAttribute;
 	placeholder: string;
-	differentPassword: boolean;
-	differentPasswordErrorMessage: string;
-}) => {
+	setValue: Dispatch<SetStateAction<string>>;
+	handleValue: (value: string) => Promise<boolean>;
+	setMessage: Dispatch<SetStateAction<string>>;
+	message: string;
+}
+
+const DebouncedInput = ({
+	type,
+	placeholder,
+	setValue,
+	handleValue,
+	setMessage,
+	message,
+}: DebouncedInputProps) => {
 	const [throttle, setThrottle] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);
-	const [message, setMessage] = useState<string>("");
 
 	const { t } = useTranslation("Root");
 
@@ -38,38 +44,25 @@ const PasswordInput = ({
 			}
 
 			timeoutRef.current = setTimeout(async () => {
-				setPassword(inputValue);
 				if (inputValue.length <= 0) {
 					setError(false);
 					setMessage("");
-				} else if (!(await handlePassword(inputValue))) {
+				} else if (!(await handleValue(inputValue))) {
 					setError(true);
-				} else if (differentPassword) {
-					setError(true);
-					setMessage(differentPasswordErrorMessage);
 				} else {
 					setError(false);
-					setMessage("Good :)");
+					setValue(inputValue);
 				}
 				setThrottle(false);
 			}, 500);
 		},
-		[setPassword, differentPassword, differentPasswordErrorMessage],
+		[setValue, handleValue, setMessage],
 	);
-
-	const handlePassword = async (password: string): Promise<boolean> => {
-		if (password.length <= 8) {
-			setMessage(t("message.error.shortPassword"));
-			return false;
-		}
-
-		return true;
-	};
 
 	return (
 		<div className="flex flex-col w-full items-center h-24">
 			<input
-				type="password"
+				type={type}
 				className={`${cls("w-1/2 h-12 bg-transparent border-b-2 font-DGM text-center text-2xl focus:outline-none", error ? "text-error  border-b-error placeholder:text-error" : "text-primary border-b-primary placeholder:text-primary")}`}
 				placeholder={placeholder}
 				onChange={handleChange}
@@ -81,7 +74,7 @@ const PasswordInput = ({
 					/>
 				) : (
 					<p
-						className={`${cls("font-DGM ", error ? "text-base text-error" : "text-xl text-primary")}`}
+						className={`${cls("font-DGM text-base", error ? "text-error" : "text-primary")}`}
 					>
 						{message}
 					</p>
@@ -91,4 +84,4 @@ const PasswordInput = ({
 	);
 };
 
-export default PasswordInput;
+export default DebouncedInput;

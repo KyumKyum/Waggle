@@ -3,25 +3,58 @@ import { useNavigate } from "react-router-dom";
 import JitterText from "../components/common/JitterText";
 import HoverButton from "../components/common/HoverButton";
 import { useState } from "react";
-import EmailInput from "../components/signUp/EmailInput";
-
-function PasswordInput({ placeholder }: { placeholder: string }) {
-	return (
-		<div className="flex flex-col w-full items-center h-24">
-			<input
-				type="password"
-				className="w-1/2 h-12 bg-transparent font-DGM text-center text-primary border-b-2 border-b-primary placeholder:text-primary text-2xl focus:outline-none"
-				placeholder={placeholder}
-			/>
-		</div>
-	);
-}
+import DebouncedInput from "../components/signUp/DebouncedInput";
+import { checkEmailExistence } from "../server/invokeEmail";
+import { validateEmail } from "../utils/regex";
 
 function SignUpPage() {
 	const [email, setEmail] = useState<string>("");
+	const [emailMessage, setEmailMessage] = useState<string>("");
+	const [passwordMessage, setPasswordMessage] = useState<string>("");
+	const [checkPasswordMessage, setCheckPasswordMessage] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+	const [checkPassword, setCheckPassword] = useState<string>("");
 
 	const { t } = useTranslation("Root");
 	const navigate = useNavigate();
+
+	const handleEmail = async (email: string): Promise<boolean> => {
+		if (!validateEmail(email)) {
+			setEmailMessage(t("message.error.invalidatedEmail"));
+			return false;
+		}
+		if (!(await checkEmailExistence(email))) {
+			setEmailMessage(t("message.error.duplicatedEmail"));
+			return false;
+		}
+		setEmailMessage(t("message.normal.approved"));
+
+		return true;
+	};
+
+	const handlePassword = async (password: string): Promise<boolean> => {
+		if (password.length <= 6) {
+			console.log(password.length);
+			setPasswordMessage(t("message.error.shortPassword"));
+			return false;
+		}
+
+		setPasswordMessage(t("message.normal.approved"));
+
+		return true;
+	};
+
+	const handleCheckedPassword = async (password: string): Promise<boolean> => {
+		if (checkPassword.length <= 0) {
+			setCheckPasswordMessage("");
+		} else if (password !== checkPassword) {
+			setCheckPasswordMessage(t("message.error.differentPassword"));
+			return false;
+		}
+
+		setCheckPasswordMessage(t("message.normal.approved"));
+		return true;
+	};
 
 	return (
 		<div className="h-svh flex flex-col bg-[#04142e] p-10">
@@ -32,12 +65,29 @@ function SignUpPage() {
 					duration={0.6}
 				/>
 				<form className="flex flex-col h-full w-full justify-around items-center">
-					<EmailInput setEmail={setEmail} />
-					<PasswordInput placeholder={t("placeholder.passphrase")} />
-					<input
+					<DebouncedInput
+						type="email"
+						placeholder={t("placeholder.email")}
+						setValue={setEmail}
+						handleValue={handleEmail}
+						setMessage={setEmailMessage}
+						message={emailMessage}
+					/>
+					<DebouncedInput
 						type="password"
-						className="w-1/2 h-12 bg-transparent font-DGM text-center text-primary border-b-2 border-b-primary placeholder:text-primary text-2xl focus:outline-none"
+						placeholder={t("placeholder.passphrase")}
+						setValue={setPassword}
+						handleValue={handlePassword}
+						setMessage={setPasswordMessage}
+						message={passwordMessage}
+					/>
+					<DebouncedInput
+						type="password"
 						placeholder={t("placeholder.passphraseCheck")}
+						setValue={setCheckPassword}
+						handleValue={handleCheckedPassword}
+						setMessage={setCheckPasswordMessage}
+						message={checkPasswordMessage}
 					/>
 				</form>
 			</div>

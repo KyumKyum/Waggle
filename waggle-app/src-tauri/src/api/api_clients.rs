@@ -32,7 +32,7 @@ static API_CLIENTS: Lazy<Mutex<ApiClients>> = Lazy::new(||{
 });
 
 impl ApiClients {
-    pub fn api_clients() -> &'static Mutex<ApiClients> {
+    pub fn api_clients() -> &'static Mutex<ApiClients> { //Life time...?
         &*API_CLIENTS
     }
 }
